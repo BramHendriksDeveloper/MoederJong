@@ -8,10 +8,12 @@ require('angular-material/angular-material');
 var app = angular.module('moeder_jong', ['ngRoute', 'ngMaterial']);
 
 app.controller('AppController', require('./app.controller.js'));
-app.service('GamesService', ['$http', require('./games/games.service.js')]);
-app.controller('GamesController', ['LoginService', 'GamesService', require('./games/games.controller.js')]);
 app.service('LoginService', ['$http', require('./login/login.service.js')]);
 app.controller('LoginController', ['LoginService', require('./login/login.controller.js')]);
+app.service('GamesService', ['$http', require('./games/games.service.js')]);
+app.controller('GamesController', ['LoginService', 'GamesService', require('./games/games.controller.js')]);
+app.service('GameService', ['$http', require('./games/game.service.js')]);
+app.controller('GameController', ['LoginService', 'GameService', require('./games/game.controller.js')]);
 
 app.config(['$routeProvider',
 	function($routeProvider, uiGmapGoogleMapApiProvider) {
@@ -25,8 +27,8 @@ app.config(['$routeProvider',
             controller: 'GamesController as games'
         }).
         when('/games/:gameID', {
-        	templateUrl: 'templates/gameInfo.html',
-            controller: 'GameInfoController as gameInfo'
+        	templateUrl: 'templates/game.html',
+            controller: 'GameController as game'
         }).
         otherwise({
         	redirectTo: '/login'
