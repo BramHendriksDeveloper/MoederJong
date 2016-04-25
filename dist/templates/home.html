@@ -1,0 +1,51 @@
+<!--<h2>{{home.title}}</h2>
+<h3>BEEP BOOP ROBOT HOMESCREEN</h3>
+<div ng-repeat="game in home.games">
+    <p>{{game.title}}</p>
+    <p>{{game.created}}</p>
+</div>-->
+<div layout="row">
+    <div flex="40" layout="column" class="boxWithHeight">
+        <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <span>Playable games</span>
+            </div>
+        </md-toolbar>
+        <md-conten layout-padding>
+            <md-list flex>
+                <md-list-item class="md-3-line" ng-repeat="game in home.games | orderBy: '-created'">
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{game.title}}</h3>
+                    <h4>{{game.created}}</h4>
+                    <p ng-repeat="player in game.players">{{player.name}}</p>
+                </div>
+                <md-button class="md-raised md-primary" ng-click="null">Join</md-button>
+                </md-list-item>
+            </md-list>
+        </md-content>
+        <md-divider></md-divider>
+    </div>
+    <md-divider></md-divider>
+    <div flex layout="column" class="boxWithHeight">
+        <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <span>Create game</span>
+            </div>
+        </md-toolbar>
+        <md-content layout-padding>
+            <div>
+                <form name="userForm">
+                    <md-input-container class="md-block">
+                        <label>Title</label>
+                        <input ng-model="home.input.title">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Description</label>
+                        <textarea ng-model="home.input.description" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                    </md-input-container>
+                </form>
+                <md-button class="md-raised md-primary" ng-click="null">Create</md-button>
+            </div>
+        </md-content>
+    </div>
+</div>

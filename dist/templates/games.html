@@ -1,0 +1,75 @@
+<div layout="row">
+    <div flex="30" layout="column" class="boxWithHeight">
+        <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <span>My games</span>
+            </div>
+        </md-toolbar>
+        <md-conten layout-padding>
+            <md-list flex>
+                <md-list-item class="md-3-line" ng-repeat="game in games.games.mine | orderBy: 'created'" ng-click="games.play(game.id)">
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{game.title}}</h3>
+                        <h4>{{game.created}}</h4>
+                        <p ng-repeat="player in game.players">{{player.name}}</p>
+                    </div>
+                    <md-divider></md-divider>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+    <md-divider></md-divider>
+    <div flex="30" layout="column" class="boxWithHeight">
+        <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <span>Playable games</span>
+            </div>
+        </md-toolbar>
+        <md-conten layout-padding>
+            <md-list flex>
+                <md-list-item class="md-3-line" ng-repeat="game in games.games.playable | orderBy: 'createdOn'">
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{game.gameTemplate.id}}</h3>
+                        <h4>{{game.createdOn}}</h4>
+                        <p ng-repeat="player in game.players">{{player.name}}</p>
+                    </div>
+                    <md-button class="md-raised md-primary" ng-click="games.join(1)">Join</md-button>
+                    <md-divider></md-divider>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+    <md-divider></md-divider>
+    <div flex layout="column" class="boxWithHeight">
+        <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <span>Create game</span>
+            </div>
+        </md-toolbar>
+        <md-content layout-padding>
+            <div>
+                <form name="userForm">
+                    <md-input-container class="md-block">
+                        <label>Template</label>
+                        <md-select ng-model="games.input.template">
+                            <md-option ng-repeat="template in games.templates" value="{{template._id}}">
+                                {{template._id}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-slider-container class="md-block" >
+                        <span>Minimum players: {{games.input.min}}</span>
+                        <md-slider flex ng-model="games.input.min" min="1" max="{{games.input.max}}" aria-label="green" id="green-slider" class="md-accent">
+                        </md-slider>
+                    </md-slider-container>
+                    <md-slider-container class="md-block" >
+                        <span>Maximum players: {{games.input.max}}</span>
+                        <md-slider flex ng-model="games.input.max" min="{{games.input.min}}" max="32" aria-label="green" id="green-slider" class="md-accent">
+                        </md-slider>
+                    </md-slider-container>
+                </form>
+                <md-button class="md-raised md-primary" ng-click="games.create()">Create</md-button>
+            </div>
+        </md-content>
+    </div>
+</div>

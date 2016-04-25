@@ -1,0 +1,28 @@
+<div layout="column" layout-align="center center">
+    <md-toolbar layout="row" class="md-hue-3">
+        <div class="md-toolbar-tools">
+            <span>Login</span>
+        </div>
+    </md-toolbar>
+    <md-conten layout-padding>
+        <div>
+            <form name="loginForm">
+                <md-input-container class="md-block">
+                    <label>Username</label>
+                    <input required name="username" ng-model="login.input.username">
+                    <div ng-messages="projectForm.username.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Password</label>
+                    <input required name="password" ng-model="login.input.password">
+                    <div ng-messages="projectForm.password.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+            </form>
+            <md-button class="md-raised md-primary" ng-click="login.login()">Login</md-button>
+        </div>
+    </md-content>
+</div>
