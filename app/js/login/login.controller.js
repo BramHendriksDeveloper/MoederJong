@@ -1,4 +1,4 @@
-module.exports = function(LoginService){
+module.exports = function(LoginService, PopupService){
     var self = this;
     var private = {};
     
@@ -12,7 +12,7 @@ module.exports = function(LoginService){
     };
     
     private.loginFailed = function(){
-        alert("login failed");
+        PopupService.alert('Login Failed', 'Wrong password and username combination.')
     };
     
     self.login = function(){

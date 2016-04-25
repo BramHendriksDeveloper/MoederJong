@@ -7,12 +7,14 @@ require('angular-material/angular-material');
 // Create your app
 var app = angular.module('moeder_jong', ['ngRoute', 'ngMaterial']);
 
-app.controller('AppController', require('./app.controller.js'));
 app.service('LoginService', ['$http', require('./login/login.service.js')]);
-app.controller('LoginController', ['LoginService', require('./login/login.controller.js')]);
+app.service('PopupService', ['$http', '$mdDialog', require('./popup.service.js')]);
 app.service('GamesService', ['$http', require('./games/games.service.js')]);
-app.controller('GamesController', ['LoginService', 'GamesService', require('./games/games.controller.js')]);
 app.service('GameService', ['$http', require('./games/game.service.js')]);
+
+app.controller('AppController', require('./app.controller.js'));
+app.controller('LoginController', ['LoginService', 'PopupService', require('./login/login.controller.js')]);
+app.controller('GamesController', ['LoginService', 'GamesService', require('./games/games.controller.js')]);
 app.controller('GameController', ['LoginService', 'GameService', require('./games/game.controller.js')]);
 
 app.config(['$routeProvider',
