@@ -1,11 +1,11 @@
 require('angular/angular');
-require('angular-route/angular-route');
+require('angular-ui-router');
 require('angular-aria/angular-aria');
 require('angular-animate/angular-animate');
 require('angular-material/angular-material');
 
 // Create your app
-var app = angular.module('moeder_jong', ['ngRoute', 'ngMaterial']);
+var app = angular.module('moeder_jong', ['ui.router', 'ngMaterial']);
 
 app.service('LoginService', ['$http', require('./login/login.service.js')]);
 app.service('PopupService', ['$http', '$mdDialog', require('./popup.service.js')]);
@@ -17,23 +17,24 @@ app.controller('LoginController', ['LoginService', 'PopupService', require('./lo
 app.controller('GamesController', ['LoginService', 'GamesService', require('./games/games.controller.js')]);
 app.controller('GameController', ['LoginService', 'GameService', require('./games/game.controller.js')]);
 
-app.config(['$routeProvider',
-	function($routeProvider, uiGmapGoogleMapApiProvider) {
-		$routeProvider.
-    	when('/login', {
+app.config(
+    function($stateProvider, $urlRouterProvider) {
+		$stateProvider.
+    	state('login', {
+            url: '/login',
             templateUrl: 'templates/login.html',
             controller: 'LoginController as login'
         }).
-        when('/games', {
-        	templateUrl: 'templates/games.html',
+        state('games', {
+            url: '/games',
+            templateUrl: 'templates/games.html',
             controller: 'GamesController as games'
         }).
-        when('/games/:gameID', {
-        	templateUrl: 'templates/game.html',
+        state('games.id', {
+            url: '/games/:gameID',
+            templateUrl: 'templates/game.html',
             controller: 'GameController as game'
-        }).
-        otherwise({
-        	redirectTo: '/login'
         });
+        $urlRouterProvider.otherwise('/login');
 	}
-]);
+);

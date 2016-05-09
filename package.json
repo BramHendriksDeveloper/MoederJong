@@ -14,8 +14,6 @@
   "author": "Bram Hendriks",
   "license": "ISC",
   "devDependencies": {
-    "angular": "^1.5.3",
-    "angular-route": "1.4.x",
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
     "grunt-contrib-copy": "^1.0.0",
@@ -23,9 +21,11 @@
     "grunt-http-server": "^1.16.0"
   },
   "dependencies": {
+    "angular": "^1.5.3",
     "angular-animate": "^1.5.5",
     "angular-aria": "^1.5.5",
     "angular-material": "^1.0.7",
-    "angular-messages": "^1.5.5"
+    "angular-messages": "^1.5.5",
+    "angular-ui-router": "^0.2.18"
   }
 }
