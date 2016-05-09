@@ -10,6 +10,6 @@ module.exports = function(LoginService, GameService){
             self.game = data;
         };
         
-        GameService.getGame(null, self.fillGame, null)
+        GameService.getGame(null, self.fillGame, null);
     }
 };
